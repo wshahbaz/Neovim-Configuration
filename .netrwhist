@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
-let g:netrw_dirhist_3='/Users/wshahbaz/Desktop/hi_hello'
-let g:netrw_dirhist_2='/Users/wshahbaz/.config/nvim/plugged'
-let g:netrw_dirhist_1='/Users/wshahbaz/Desktop/hellos_web'
