@@ -7,23 +7,10 @@
 call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
 	Plug 'kyoz/purify', { 'rtp': 'vim' }        		"Purity colour schemes
     Plug 'jiangmiao/auto-pairs'                         "auto close brackets
-    Plug 'vim-airline/vim-airline'                      "Airline bar at the bottom
-    Plug 'vim-airline/vim-airline-themes'               "Arline colour themes
+    Plug 'vim-airline/vim-airline', { 'on': 'Vim-air-toggle' }                      "Airline bar at the bottom
+   " Plug 'vim-airline/vim-airline-themes'               "Arline colour themes
     Plug 'lilydjwg/colorizer'                           "Shows actual colours of colours
-    Plug 'tpope/vim-eunuch'                             "L" "Vim sugar for unix commands
-    Plug 'tpope/vim-fugitive'                           "L" "Git support
-    Plug 'airblade/vim-gitgutter'                       "Show and handle git changes
-    Plug 'frazrepo/vim-rainbow'                         "highlight brackets
-    "Plug 'dhruvasagar/vim-table-mode'                  "for creating tables easily - only use when needed
-    "Plug 'chrisbra/csv.vim'                            "Plugin for CSVs
-    Plug 'preservim/nerdtree'                           "L" "File explorer
-    Plug 'ctrlpvim/ctrlp.vim'                           "L" "status bar fuzzy finder
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } "L" "fuzzy finder
-    Plug 'junegunn/fzf.vim'                             "L" "fuzzy finder config
-    Plug 'tpope/vim-projectionist'                      "L" "granular project configuration
-    Plug 'tomtom/tcomment_vim'                          "L" "Vim Commenter
-    Plug 'terryma/vim-multiple-cursors'                 "L" "Vim multicursor functionality
-
+    Plug 'tpope/vim-eunuch'                             "Vim sugar for unix commands
 call plug#end()
 
 "EDITING LOOKS"
@@ -57,28 +44,12 @@ call plug#end()
     "WINDOW
     set cmdheight=2                 " use a status bar that is 1 rows high
     set showcmd                     " show cmd in last line of screen"
-    set updatetime=400              " Update every 400ms
 
-    "Plugins"
-        "Airline
-            let g:airline_theme='powerlineish'       "airline theme
-            let g:airline_powerline_fonts=1         "font type"
-            let g:airline#extensions#tabline#enabled = 1
 
-        "Vim-GitGutter
-            let g:gitgutter_max_signs = 200
-            highlight GitGutterAdd ctermfg=2
-            highlight GitGutterDelete ctermfg=1
-            highlight GitGutterChange ctermfg=3
-            highlight GitGutterChangeDelete ctermfg=4
-
-        "Vim-Rainbow
-            let g:rainbow_active=1
-
-        "NERD Tree
-            autocmd StdinReadPre * let s:std_in=1
-            autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-
+    "Airline
+        let g:airline_theme='powerlineish'       "airline theme
+        let g:airline_powerline_fonts=1         "font type"
+        let g:airline#extensions#tabline#enabled = 1
 
 "FUNCTIONALITY"
 
@@ -111,20 +82,10 @@ call plug#end()
 "KEY BINDINGS
 
     "FLOW"
-        "Vim-Gitgutter"
-            nmap ]h <Plug>(GitGutterNextHunk)
-            nmap [h <Plug>(GitGutterPrevHunk)
-            nmap ghs <Plug>(GitGutterStageHunk)
-            nmap ghu <Plug>(GitGutterUndoHunk)
-            nmap ghp <Plug>(GitGutterPreviewHunk)
+
 
     "MAPPINGS"
-        "NERD TREE
-            map <C-n> :NERDTreeToggle<CR>
 
+        "PLUGIN-SPECIFIC
 
     "CODING"
-        "Vim-Multi-Cursors
-            let g:multi_cursor_start_word_key='mc'
-
-
