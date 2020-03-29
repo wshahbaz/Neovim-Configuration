@@ -23,6 +23,14 @@ call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
     Plug 'tpope/vim-projectionist'                      "L" "granular project configuration
     Plug 'tomtom/tcomment_vim'                          "L" "Vim Commenter
     Plug 'terryma/vim-multiple-cursors'                 "L" "Vim multicursor functionality
+    Plug 'tpope/vim-surround'                           "L" "Vim outer bracket/quoting support
+    Plug 'easymotion/vim-easymotion'                    "L" "Easy traversal of searches
+    Plug 'tpope/vim-unimpaired'                         "L" "Lots of useful key bindings with bracket leaders
+    Plug 'tpope/vim-repeat'                             "Allows repeating vim-srrounds, vim-unimpaired
+    Plug 'majutsushi/tagbar'                            "L" "ctags browser
+    "Plug 'powerline/powerline'                         "L" "Very powerful customizeable setup bar
+    "Plug 'jmcantrell/vim-virtualenv'                   "L" "Setup virtual envs for PYthon -> integrateable"
+    Plug 'jlanzarotta/bufexplorer'                      "L" "Buffer explorer
 
 call plug#end()
 
@@ -48,16 +56,20 @@ call plug#end()
 	set hlsearch                            "highlight search
 	set ic                                  "ignore case while searching
     set smartcase                           "automatically switch to case-sensitive on uppercase added"
-	set cursorline                          "highlight focused line
     set ruler                               "show line number and column"
 
 	"CODING
     set showmatch							"show matching brackets
 
     "WINDOW
-    set cmdheight=2                 " use a status bar that is 1 rows high
+    set cmdheight=1                 " use a status bar that is 1 rows high
     set showcmd                     " show cmd in last line of screen"
     set updatetime=400              " Update every 400ms
+        "Make help windows open vsplits
+        augroup vimrc_help
+            autocmd!
+            autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+        augroup END
 
     "Plugins"
         "Airline
@@ -118,13 +130,35 @@ call plug#end()
             nmap ghu <Plug>(GitGutterUndoHunk)
             nmap ghp <Plug>(GitGutterPreviewHunk)
 
+        "Vim-Easy Motion"
+            map  <Leader>f <Plug>(easymotion-bd-f)
+            nmap <Leader>f <Plug>(easymotion-overwin-f)
+            nmap <Leader>s <Plug>(easymotion-overwin-f2)
+            map <Leader>L <Plug>(easymotion-bd-jk)
+            nmap <Leader>L <Plug>(easymotion-overwin-line)
+            map  <Leader>w <Plug>(easymotion-bd-w)
+            nmap <Leader>w <Plug>(easymotion-overwin-w)
+
     "MAPPINGS"
         "NERD TREE
             map <C-n> :NERDTreeToggle<CR>
 
+        "Vim-Unimpaired
+            nmap < [
+            nmap > ]
+            omap < [
+            omap > ]
+            xmap < [
+            xmap > ]
 
     "CODING"
         "Vim-Multi-Cursors
             let g:multi_cursor_start_word_key='mc'
 
+        "Tagbar
+            nmap <Leader>t :TagbarToggle<CR>
+
+    "ADDITIONAL
+        "LAST Vim-Repeat
+            silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
