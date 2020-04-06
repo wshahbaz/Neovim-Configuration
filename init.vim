@@ -14,7 +14,7 @@ call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
     Plug 'tpope/vim-fugitive'                               "L" "Git support
     Plug 'airblade/vim-gitgutter'                           "Show and handle git changes
     Plug 'frazrepo/vim-rainbow'                             "highlight brackets
-    "Plug 'dhruvasagar/vim-table-mode'                      "for creating tables easily - only use when needed
+    Plug 'dhruvasagar/vim-table-mode'                      "for creating tables easily - only use when needed
     "Plug 'chrisbra/csv.vim'                                "Plugin for CSVs
     Plug 'preservim/nerdtree'                               "L" "File explorer
     Plug 'ctrlpvim/ctrlp.vim'                               "L" "status bar fuzzy finder
@@ -132,6 +132,8 @@ call plug#end()
          \]
         "ycm's global conf abs filepath (for me)
         let g:ycm_global_ycm_extra_conf = '$XDG_CONFIG_HOME/nvim/special_config/.ycm_extra_conf.py'
+        "ycm's python interpreter (can't handle pyenv configs)
+        let g:python3_host_prog = '/Users/wshahbaz/.pyenv/versions/py3nvim/bin/python'
 
         "ALE
         "set which files use which fixers
