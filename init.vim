@@ -33,7 +33,7 @@ call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
     Plug 'jlanzarotta/bufexplorer'                          "L" "Buffer explorer
     Plug 'dense-analysis/ale'                               "L" "Linting and syntax checking
     Plug 'ycm-core/YouCompleteMe'                           "L" "Autocompleter
-    Plug 'davidhalter/jedi-vim'                             "L" "Python autocompletion engine
+  "  Plug 'davidhalter/jedi-vim'                             "L" "Python autocompletion engine
 
 call plug#end()
 
