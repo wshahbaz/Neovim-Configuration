@@ -5,7 +5,9 @@
 
 "PLUG INS"
 call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
-	Plug 'kyoz/purify', { 'rtp': 'vim' }        		    "Purity colour schemes
+	  Plug 'kyoz/purify', { 'rtp': 'vim' }        		    "Purity colour schemes
+    Plug 'pangloss/vim-javascript'
+    Plug 'elzr/vim-json'
     Plug 'jiangmiao/auto-pairs'                             "auto close brackets
     Plug 'vim-airline/vim-airline'                          "Airline bar at the bottom
     Plug 'vim-airline/vim-airline-themes'                   "Arline colour themes
@@ -33,21 +35,21 @@ call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
     Plug 'jlanzarotta/bufexplorer'                          "L" "Buffer explorer
     Plug 'dense-analysis/ale'                               "L" "Linting and syntax checking
     Plug 'ycm-core/YouCompleteMe'                           "L" "Autocompleter
-  "  Plug 'davidhalter/jedi-vim'                             "L" "Python autocompletion engine
+    "Plug 'davidhalter/jedi-vim'                             "L" "Python autocompletion engine
 
 call plug#end()
 
 "EDITING LOOKS"
 	"SPACING
 	set ai                                  "auto-indent
-	set ts=4                                "tab stop
-	set shiftwidth=4                        "levels of indentation
+	set ts=2                                "tab stop
+	set shiftwidth=2                        "levels of indentation
 	set cindent                             "c autoindenting
-	set softtabstop=4 						"see multiple spaces as tabstops
+	set softtabstop=2 						"see multiple spaces as tabstops
 	set expandtab							"converts tabs to white space
 
 	"TEXT
-	colorscheme purify                      "colorscheme
+  	colorscheme purify                      "colorscheme
     syntax enable                           "enable syntax highlighting
     syntax on                               "turn on for Purify plug-in
     set display+=lastline                   "try to show paragraph's last line"
@@ -93,6 +95,11 @@ call plug#end()
             "open nerd tree when opening folder and make it tab-specific
             autocmd StdinReadPre * let s:std_in=1
             autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+        "vim-json
+          "override previous settings
+          hi! def link jsonKeyword Identifier
+          au BufRead,BufNewFile,BufReadPost *.json set syntax=json
 
 "FUNCTIONALITY"
     "WORKFLOW
@@ -142,6 +149,7 @@ call plug#end()
         \}
         let g:ale_fix_on_save = 1                               "Enable ale-fix on save
         let g:ale_completion_enabled = 1                        "Enable autocompleters where applicable"
+        set completeopt+=noinsert                               "Be less aggressive with the autocomplete"
 
 "KEY BINDINGS
     "FLOW"
